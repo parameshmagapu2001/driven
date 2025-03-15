@@ -13,7 +13,6 @@ const GetInTouch: React.FC = () => {
   const [firstName, setFirstName] = useState<string>("");
   const [email, setEmail] = useState<string>("");
   const [number, setNumber] = useState<string>("");
-  const [captchaValue, setCaptchaValue] = useState<string | null>(null);
 
   const [purchaseIntent, setPurchaseIntent] = useState({
     secondaryHome: false,
@@ -35,26 +34,13 @@ const GetInTouch: React.FC = () => {
     setBudget({ ...budget, [e.target.name]: e.target.checked });
   };
 
-  const handleCaptchaChange = (value: string | null) => {
-    setCaptchaValue(value);
-  };
-
   const handleSendMsg = async () => {
     if (number.length !== 12) {
       alert("Please enter a valid phone number");
       return;
     }
 
-    if (!captchaValue) {
-      alert("Please complete the CAPTCHA");
-      return;
-    }
-
-    const res = await sendMail({
-      firstName,
-      email,
-      number,
-    });
+    const res = await sendMail({ firstName, email, number });
 
     if (res) {
       setFirstName("");
@@ -80,7 +66,6 @@ const GetInTouch: React.FC = () => {
         <p className="text-xs">Share your details to know more...</p>
 
         <div className="mt-5">
-          {/* Full Name & Phone Number */}
           <div className="flex items-center justify-between">
             <div>
               <p className="text-xs leading-5">Full Name</p>
@@ -103,7 +88,6 @@ const GetInTouch: React.FC = () => {
             </div>
           </div>
 
-          {/* Email Field */}
           <div className="mt-5">
             <p className="text-xs leading-5">Email:</p>
             <Input
@@ -115,10 +99,7 @@ const GetInTouch: React.FC = () => {
             />
           </div>
 
-          {/* Intent of Purchase & Budget - Now Side by Side */}
           <div className="flex flex-col lg:flex-row lg:items-center lg:justify-between gap-5 mt-5">
-            
-            {/* Intent of Purchase */}
             <div className="w-full lg:w-1/2">
               <p className="text-xs leading-5">Intent of Purchase:</p>
               <div className="flex flex-wrap gap-3 mt-1">
@@ -146,32 +127,26 @@ const GetInTouch: React.FC = () => {
               </div>
             </div>
 
-            {/* Budget */}
             <div className="w-full lg:w-1/2">
               <p className="text-xs leading-5">Budget:</p>
               <div className="flex flex-wrap gap-3 mt-1">
-                {["7-10cr", "11-20cr", "20-30cr", "30cr+"].map((range) => (
-                 <label key={range} className="flex items-center gap-2">
-                 <input
-                   type="checkbox"
-                   name={range}
-                   className="w-4 h-4 border border-gray-400 rounded"
-                   checked={budget[range as keyof typeof budget]}  // ✅ Fix applied
-                   onChange={handleBudgetChange}
-                 />
-                 <span className="text-sm text-gray-700">INR {range}</span>
-               </label>
-               
+                {Object.keys(budget).map((range) => (
+                  <label key={range} className="flex items-center gap-2">
+                    <input
+                      type="checkbox"
+                      name={range}
+                      className="w-4 h-4 border border-gray-400 rounded"
+                      checked={budget[range as keyof typeof budget]}
+                      onChange={handleBudgetChange}
+                    />
+                    <span className="text-sm text-gray-700">INR {range}</span>
+                  </label>
                 ))}
               </div>
             </div>
           </div>
 
-          {/* Submit Button with ReCAPTCHA Above */}
           <div className="flex flex-col items-center justify-center mt-10">
-            {/* ReCAPTCHA - Positioned Above the Button */}
-
-            {/* Register Button */}
             <Button
               className="bg-[#0F57D1] rounded-[4px] text-white px-[18px] py-[10px] text-xs w-auto mt-4"
               onClick={handleSendMsg}
@@ -190,7 +165,6 @@ const GetInTouch: React.FC = () => {
         </div>
       </div>
 
-      {/* Desktop View */}
       <div className="hidden lg:block">
         <GetInTouchDesk />
       </div>
@@ -198,4 +172,4 @@ const GetInTouch: React.FC = () => {
   );
 };
 
-export default GetInTouch;
+export default GetInTouch;
