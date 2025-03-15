@@ -1,7 +1,6 @@
 "use client";
 import { Button } from "@/components/ui/button";
 import Image from "next/image";
-import { useState } from "react";
 
 import BottomBorderImg from "../../../assets/images/luxury-txt-border (2).png";
 import WhyInvestImg from "../../../assets/images/invest-desk.png";

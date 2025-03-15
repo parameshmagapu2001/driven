@@ -6,12 +6,19 @@ import { Button } from "../ui/button";
 import MobileNav from "./MobileNav";
 
 const Navbar = () => {
-  const onItemClick = (
-    item: "home" | "experience" | "location" | "highlights" | "whyInvest"
-  ) => {
-    const el = document.getElementById(item);
+  const menuItems: ("home" | "experience" | "location" | "highlights" | "whyInvest")[] = [
+    "home",
+    "experience",
+    "location",
+    "highlights",
+    "whyInvest",
+  ];
+
+  const onItemClick = (item: "home" | "experience" | "location" | "highlights" | "whyInvest") => {
+    const el = document.getElementById(item); // `item` has a specific type now
     if (el) el.scrollIntoView({ behavior: "smooth" });
   };
+  
 
   const handleOnContact = () => {
     const getInTouch = document.getElementById("getInTouch");
@@ -34,17 +41,15 @@ const Navbar = () => {
       </div>
       <div className="hidden lg:flex items-center">
         <div className="flex items-center gap-10 text-[16px] text-[#8A8A8A]">
-          {["home", "experience", "location", "highlights", "whyInvest"].map(
-            (item, index) => (
-              <p
-                key={index}
-                className="cursor-pointer pb-[14px] hover:text-[#0F57D1] transition"
-                onClick={() => onItemClick(item as any)}
-              >
-                {item.charAt(0).toUpperCase() + item.slice(1)}
-              </p>
-            )
-          )}
+          {menuItems.map((item) => (
+            <p
+              key={item}
+              className="cursor-pointer pb-[14px] hover:text-[#0F57D1] transition"
+              onClick={() => onItemClick(item)}
+            >
+              {item.charAt(0).toUpperCase() + item.slice(1)}
+            </p>
+          ))}
         </div>
         <Button
           className="bg-[#0F57D1] w-[154px] h-[45px] ml-12 mb-[14px] flex items-center gap-2"
