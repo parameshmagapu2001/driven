@@ -4,7 +4,6 @@ import { Input } from "@/components/ui/input";
 import { sendMail } from "@/lib/utils";
 import Image from "next/image";
 import { useState } from "react";
-import ReCAPTCHA from "react-google-recaptcha";
 
 import CircleOne from "../../../assets/images/circle-one.png";
 import CircleTwo from "../../../assets/images/circle-two.png";
@@ -138,7 +137,6 @@ const GetInTouchDesk = () => {
         </div>
 
         <div className="flex flex-col md:flex-row items-center justify-between mt-6 gap-4">
-          <ReCAPTCHA sitekey="6LeRXPQqAAAAAOIKtdCdIq_GqOfiCtfA7bC-TpFP" onChange={handleCaptchaChange} />
           <Button className="bg-blue-600 text-white px-6 py-3 rounded-md" onClick={handleSendMsg}>
             Register Your Interest Now
           </Button>

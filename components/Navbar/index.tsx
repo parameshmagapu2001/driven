@@ -6,15 +6,15 @@ import { Button } from "../ui/button";
 import MobileNav from "./MobileNav";
 
 const Navbar = () => {
-  const menuItems: ("home" | "experience" | "location" | "highlights" | "whyInvest")[] = [
+  const menuItems: ("home" | "experience" | "location" | "LuxuryResidences" | "whyInvest")[] = [
     "home",
     "experience",
     "location",
-    "highlights",
+    "LuxuryResidences",
     "whyInvest",
   ];
 
-  const onItemClick = (item: "home" | "experience" | "location" | "highlights" | "whyInvest") => {
+  const onItemClick = (item: "home" | "experience" | "location" | "LuxuryResidences" |  "whyInvest") => {
     const el = document.getElementById(item); // `item` has a specific type now
     if (el) el.scrollIntoView({ behavior: "smooth" });
   };

@@ -8,7 +8,7 @@ const MobileNav = () => {
   const [isDrawerOpen, setIsDrawerOpen] = useState(false);
 
   const onItemClick = (
-    item: "home" | "experience" | "location" | "highlights" | "whyInvest"
+    item: "home" | "experience" | "location" | "LuxuryResidences" | "whyInvest"
   ) => {
     setIsDrawerOpen(false);
 
@@ -37,7 +37,7 @@ const MobileNav = () => {
           <p onClick={() => onItemClick("home")}>Home</p>
           <p onClick={() => onItemClick("experience")}>Experience</p>
           <p onClick={() => onItemClick("location")}>Location</p>
-          <p onClick={() => onItemClick("highlights")}>Highlights</p>
+          <p onClick={() => onItemClick("LuxuryResidences")}>Highlights</p>
           <p onClick={() => onItemClick("whyInvest")}>Why Invest?</p>
         </div>
       </DrawerContent>

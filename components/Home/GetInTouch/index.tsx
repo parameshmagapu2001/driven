@@ -5,7 +5,6 @@ import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
 import { sendMail } from "@/lib/utils";
 import Image from "next/image";
-import ReCAPTCHA from "react-google-recaptcha";
 import GetInTouchImg from "../../../assets/images/get-in-touch.png";
 import BottomBorderImg from "../../../assets/images/luxury-txt-border (2).png";
 import GetInTouchDesk from "./GetInTouchDesk";
@@ -171,10 +170,6 @@ const GetInTouch: React.FC = () => {
           {/* Submit Button with ReCAPTCHA Above */}
           <div className="flex flex-col items-center justify-center mt-10">
             {/* ReCAPTCHA - Positioned Above the Button */}
-            <ReCAPTCHA 
-              sitekey="6LeRXPQqAAAAAOIKtdCdIq_GqOfiCtfA7bC-TpFP" 
-              onChange={handleCaptchaChange} 
-            />
 
             {/* Register Button */}
             <Button
