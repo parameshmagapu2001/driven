@@ -1,4 +1,5 @@
 "use client";
+import { useEffect, useState } from "react";
 import { Button } from "@/components/ui/button";
 import Image from "next/image";
 import DotsBlackImg from "../../../assets/svg/DotS.svg";
@@ -7,6 +8,36 @@ import fairmontlogo from "../../../assets/svg/fairmont logo.svg";
 import WhatsAppIcon from "../../../assets/svg/whatsapp.svg";
 import PhoneIcon from "../../../assets/svg/call.svg";
 import arrowDown from "../../../assets/svg/arrow-down.svg";
+
+const FloatingContactButtons = () => {
+  const [isVisible, setIsVisible] = useState(false);
+
+  useEffect(() => {
+    const handleScroll = () => {
+      setIsVisible(window.scrollY > 100);
+    };
+
+    window.addEventListener("scroll", handleScroll);
+    return () => window.removeEventListener("scroll", handleScroll);
+  }, []);
+
+  return (
+    <div
+      className={`fixed right-8 bottom-32 z-50 transition-opacity ${
+        isVisible ? "opacity-100" : "opacity-0"
+      }`}
+    >
+      <div className="flex flex-col space-y-4 bg-white/70 backdrop-blur-sm p-3 rounded-xl shadow-lg">
+        <Button variant="ghost" className="p-3 hover:bg-gray-100 transition">
+          <Image src={WhatsAppIcon} width={24} height={24} alt="WhatsApp" />
+        </Button>
+        <Button variant="ghost" className="p-3 hover:bg-gray-100 transition">
+          <Image src={PhoneIcon} width={24} height={24} alt="Phone" />
+        </Button>
+      </div>
+    </div>
+  );
+};
 
 const Header = () => {
   const handleOnClick = () => {
@@ -25,19 +56,10 @@ const Header = () => {
 
   return (
     <div className="relative">
-      <div
-        className="min-h-screen w-full bg-no-repeat bg-cover flex items-center relative"
-        id="header"
-      >
+      <div className="min-h-screen w-full bg-no-repeat bg-cover flex items-center relative" id="header">
         {/* Background Image */}
         <div className="absolute inset-0">
-          <Image
-            src={heroimg}
-            alt="Fairmont Interior"
-            layout="fill"
-            objectFit="cover"
-            priority
-          />
+          <Image src={heroimg} alt="Fairmont Interior" layout="fill" objectFit="cover" priority />
         </div>
 
         {/* Dots Decoration */}
@@ -48,13 +70,7 @@ const Header = () => {
         {/* Info Card */}
         <div className="w-full max-w-[720px] bg-white/60 backdrop-blur-sm p-6 sm:p-8 lg:p-10 mx-4 sm:mx-6 lg:ml-20 rounded-lg z-10">
           <div className="flex justify-left mb-6">
-            <Image
-              src={fairmontlogo}
-              width={180}
-              height={70}
-              alt="Fairmont Logo"
-              className="object-contain"
-            />
+            <Image src={fairmontlogo} width={180} height={70} alt="Fairmont Logo" className="object-contain" />
           </div>
 
           <h1 className="text-2xl sm:text-3xl font-bold text-black mb-4">
@@ -75,8 +91,7 @@ const Header = () => {
             <div className="flex items-start">
               <div className="w-1 h-6 bg-blue-600 mr-3 mt-1"></div>
               <p className="text-black text-sm sm:text-base">
-                An exclusive collection of branded residences offering
-                breathtaking views of the Dubai Canal & Burj Khalifa.
+                An exclusive collection of branded residences offering breathtaking views of the Dubai Canal & Burj Khalifa.
               </p>
             </div>
           </div>
@@ -89,31 +104,17 @@ const Header = () => {
           </Button>
         </div>
 
-        {/* Contact buttons - grouped neatly */}
-<div className="absolute right-8 bottom-32 z-20 flex flex-col space-y-4">
-  <div className="flex flex-col space-y-4 bg-white/50 backdrop-blur-sm p-3 rounded-xl">
-    <Button variant="ghost" className="p-3 hover:bg-gray-100 transition">
-      <Image src={WhatsAppIcon} width={24} height={24} alt="WhatsApp" />
-    </Button>
-    <Button variant="ghost" className="p-3 hover:bg-gray-100 transition">
-      <Image src={PhoneIcon} width={24} height={24} alt="Phone" />
-    </Button>
-  </div>
-</div>
-
-
         {/* Scroll Down Indicator */}
-        <div
-  className="absolute bottom-0 right-50 flex flex-col items-end cursor-pointer"
-  onClick={handleScrollDown}
->
-  <div className="bg-white/30 backdrop-blur-sm p-8 rounded-full flex items-center justify-center">
-    <Image src={arrowDown} width={34} height={34} alt="Scroll Down" className="w-6 h-6" />
-  </div>
-  <p className="text-white mt-4 text-l2">Scroll Down</p>
-</div>
-
+        <div className="absolute bottom-8 right-8 flex flex-col items-center cursor-pointer" onClick={handleScrollDown}>
+          <div className="bg-white/30 backdrop-blur-sm p-4 rounded-full flex items-center justify-center">
+            <Image src={arrowDown} width={34} height={34} alt="Scroll Down" className="w-6 h-6" />
+          </div>
+          <p className="text-white mt-2 text-sm">Scroll Down</p>
+        </div>
       </div>
+
+      {/* Floating Contact Buttons */}
+      <FloatingContactButtons />
     </div>
   );
 };

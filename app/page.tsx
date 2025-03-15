@@ -13,6 +13,7 @@ import Navbar from "@/components/Navbar";
 import localFont from "next/font/local";
 import { useEffect, useState } from "react";
 
+
 const localFreightNeoPro = localFont({
   src: "../fonts/FreightNeo.otf",
   display: "auto",
