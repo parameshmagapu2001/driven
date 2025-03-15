@@ -30,7 +30,7 @@ const Amenities = () => {
   return (
     <div className="w-full">
       {/* Hero Section */}
-      <div className="w-full h-[350px] sm:h-[400px] bg-[url(/images/amenities-mobile-bg.png)] lg:bg-[url(/images/amenities-desk.png)] bg-center bg-no-repeat bg-cover flex flex-col items-center justify-center text-white text-center">
+      <div className="w-full h-[350px] sm:h-[400px] bg-[url(/images/amenities-desk.png)] lg:bg-[url(/images/amenities-desk.png)] bg-center bg-no-repeat bg-cover flex flex-col items-center justify-center text-white text-center">
         <p className="text-[18px] sm:text-[22px] lg:text-[28px] font-bold">Amenities of the Project</p>
         <Image src={BottomBorderImg} width={160} height={30} alt="border" className="my-3 mx-auto" />
         <p className="text-[12px] sm:text-[14px]">At Marriott Residences, luxury is not just a promise—it&apos;s a lifestyle.</p>
